@@ -22,7 +22,7 @@ public class BrazilWordCountMapper extends Mapper<Object, Text, Text, IntWritabl
 		Map<String, String> parsed = MRDPUtils.transformXmlToMap(value.toString());
 
 		// Grab the "Text" field, since that is what we are counting over
-		String txt = parsed.get("Text");
+		String txt = parsed.get("Location");
 
 		// .get will return null if the key is not there
 		if (txt == null) {
