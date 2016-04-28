@@ -1,0 +1,23 @@
+./executeHadoop.sh BrazilianUsersFilter /datasets/Users-reduced 
+
+
+brasilianusers-0.0.1-SNAPSHOT.jar
+
+hadoop jar brasilianusers-0.0.1-SNAPSHOT.jar br.edu.ifba.Job1 /datasets/Users-reduced user/output/countBrasil
+
+hadoop fs -rm -r -f /user/output
+
+
+public void map(Object key, Text value, Context context) throws IOException, InterruptedException {
+        
+        Map<String, String> map = MRDPUtils.transformXmlToMap(value.toString());
+        //Pattern p = Pattern.compile(mapRegex);
+        String entry = map.get("Location");
+        if (entry != null) {
+            entry = entry.toLowerCase();
+            mapRegex = mapRegex.toLowerCase();
+            if (entry.matches(mapRegex)) {
+                context.write(NullWritable.get(), value);
+            }
+        }
+    }
