@@ -7,6 +7,7 @@ import org.apache.hadoop.io.NullWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Reducer;
 
+import util.StringUtils;
 import util.UserComparator;
 
 public class TopTenBrazilianWritersReducer extends Reducer<NullWritable, Text, Text, Text> {
@@ -22,8 +23,9 @@ public class TopTenBrazilianWritersReducer extends Reducer<NullWritable, Text, T
             Integer id = Integer.parseInt(userdata[1]);
             Integer reputation = Integer.parseInt(userdata[2]); 
             //value.set(name);
-            value.set("Name: " + name +" |  Id: "   + id + " | Reputation: "  + reputation);
-            map.put(new UserComparator(name, id, Integer.parseInt(dataSplit[1])), new Text(value));
+            //value.set("Name: " + name + " \t| Reputation: "  + reputation);
+            value.set(StringUtils.formatter(text));
+            map.put(new UserComparator(name, reputation, Integer.parseInt(dataSplit[1])), new Text(value));
             if (map.size() > 10) {
                 map.remove(map.firstKey());
             }
@@ -34,9 +36,15 @@ public class TopTenBrazilianWritersReducer extends Reducer<NullWritable, Text, T
     
     @Override
     protected void cleanup(Context context) throws IOException, InterruptedException {
-        for (UserComparator qtdePosts : map.descendingKeySet()) {
-            value.set(qtdePosts.getCount().toString());
-            context.write(map.get(qtdePosts), value);
+    	context.write(new Text(StringUtils.getLine()), new Text());
+        for (UserComparator data : map.descendingKeySet()) {
+            value.set(data.getCount().toString());
+            Text numposts = new Text("Post counter: " + value);
+            //context.write(map.get(qtdePosts), value);
+            context.write(map.get(data), numposts);
         }
+        context.write(new Text(StringUtils.getLine()), new Text());
     }
+    
+    
 }

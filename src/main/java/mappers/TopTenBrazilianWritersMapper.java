@@ -12,18 +12,19 @@ import util.MRDPUtils;
 
 public class TopTenBrazilianWritersMapper extends Mapper<Object, Text, NullWritable, Text> {
 
-    private final static IntWritable ONE = new IntWritable(1);
+	private final static IntWritable ONE = new IntWritable(1);
 
-    @Override
-    protected void map(Object key, Text value, Context context) throws IOException, InterruptedException {
+	@Override
+	protected void map(Object key, Text value, Context context) throws IOException, InterruptedException {
 
-        Map<String, String> map = MRDPUtils.transformXmlToMap(value.toString());
+		Map<String, String> map = MRDPUtils.transformXmlToMap(value.toString());
 
-        if ((map.get("Id") != null) && (map.get("DisplayName") != null) && (map.get("Reputation") != null)) {
-            Text texto = new Text( map.get("DisplayName") + "|"  + map.get("Id") + "|"  + map.get("Reputation") + "\t" + ONE);
-            System.out.println(texto.toString());
-            context.write(NullWritable.get(), texto);
-        }
-    }
+		if ((map.get("Id") != null) && (map.get("DisplayName") != null) && (map.get("Reputation") != null)) {
+			Text texto = new Text(map.get("DisplayName") + "|" + map.get("Id") + "|" + map.get("Reputation") + "|"
+					+ map.get("Location") + "\t" + ONE);
+			System.out.println(texto.toString());
+			context.write(NullWritable.get(), texto);
+		}
+	}
 
 }

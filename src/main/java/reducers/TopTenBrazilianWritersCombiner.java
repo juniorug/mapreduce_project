@@ -46,7 +46,7 @@ public class TopTenBrazilianWritersCombiner extends Reducer<NullWritable, Text, 
             String name = userdata[0];   //name = Fabio Gouw
             Integer id = Integer.parseInt(userdata[1]);   //	id = 250329
             Integer reputation = Integer.parseInt(userdata[2]);   //	reputation = 1328
-            map.put(new UserComparator(name, id, total), new Text(data + "\t" + total));
+            map.put(new UserComparator(name, reputation, total), new Text(data + "\t" + total));
             if (map.size() > 10) {
                 map.remove(map.firstKey());
             }

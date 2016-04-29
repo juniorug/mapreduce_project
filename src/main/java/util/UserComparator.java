@@ -10,12 +10,12 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 public class UserComparator implements Comparator<UserComparator> {
     
     private String name;
-    private Integer id;
+    private Integer reputation;
     private Integer count;
 
-    public UserComparator(String name, Integer id, Integer count) {
+    public UserComparator(String name, Integer reputation, Integer count) {
         this.name = name;
-        this.id = id;
+        this.reputation = reputation;
         this.count = count;
            
     }
@@ -24,8 +24,8 @@ public class UserComparator implements Comparator<UserComparator> {
         return count;
     }
 
-    public Integer getId() {
-        return id;
+    public Integer getReputation() {
+        return reputation;
     }
 
     public String getName() {
@@ -38,7 +38,7 @@ public class UserComparator implements Comparator<UserComparator> {
         return new HashCodeBuilder(17, 31). // two randomly chosen prime numbers
                 // if deriving: appendSuper(super.hashCode()).
                 append(name).
-                append(id).
+                append(reputation).
                 append(count).
                 toHashCode();
     }
@@ -55,21 +55,21 @@ public class UserComparator implements Comparator<UserComparator> {
         return new EqualsBuilder().
             // if deriving: appendSuper(super.equals(obj)).
             append(name, comparator.name).
-            append(id, comparator.id).
+            append(reputation, comparator.reputation).
             append(count, comparator.count).
             isEquals();
     }
 
     @Override
     public String toString() {
-        return "UserComparator [Name = " + name + "], [Id = " + id + "], [Count = " + count + "]";
+        return "UserComparator [Name = " + name + "], [Reputation = " + reputation + "], [Count = " + count + "]";
     }
 
     @Override
     public int compare(UserComparator o1, UserComparator o2) {
         int retorno = o1.getCount().compareTo(o2.getCount());
         if (retorno == 0) {
-            return o1.getId().compareTo(o2.getId());
+            return o1.getReputation().compareTo(o2.getReputation());
         } else {
             return retorno;
         }
