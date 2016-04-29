@@ -20,7 +20,9 @@ public class TopTenBrazilianWritersReducer extends Reducer<NullWritable, Text, T
             String[] userdata =  dataSplit[0].split("\\|");
             String name = userdata[0];
             Integer id = Integer.parseInt(userdata[1]);
-            value.set(name);
+            Integer reputation = Integer.parseInt(userdata[2]); 
+            //value.set(name);
+            value.set("Name: " + name +" |  Id: "   + id + " | Reputation: "  + reputation);
             map.put(new UserComparator(name, id, Integer.parseInt(dataSplit[1])), new Text(value));
             if (map.size() > 10) {
                 map.remove(map.firstKey());

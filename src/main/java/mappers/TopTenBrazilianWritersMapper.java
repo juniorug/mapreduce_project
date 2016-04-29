@@ -19,8 +19,8 @@ public class TopTenBrazilianWritersMapper extends Mapper<Object, Text, NullWrita
 
         Map<String, String> map = MRDPUtils.transformXmlToMap(value.toString());
 
-        if ((map.get("Id") != null) && (map.get("DisplayName") != null)) {
-            Text texto = new Text( map.get("DisplayName") + "|"  + map.get("Id") +"\t" + ONE);
+        if ((map.get("Id") != null) && (map.get("DisplayName") != null) && (map.get("Reputation") != null)) {
+            Text texto = new Text( map.get("DisplayName") + "|"  + map.get("Id") + "|"  + map.get("Reputation") + "\t" + ONE);
             System.out.println(texto.toString());
             context.write(NullWritable.get(), texto);
         }
