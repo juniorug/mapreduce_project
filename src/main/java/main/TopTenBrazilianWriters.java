@@ -3,7 +3,6 @@ package main;
 import java.io.IOException;
 
 import org.apache.hadoop.conf.Configuration;
-import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.NullWritable;
 import org.apache.hadoop.io.Text;
@@ -19,6 +18,7 @@ import mappers.TopTenBrazilianWritersMapper;
 import mappers.UserMapper;
 import reducers.TopTenBrazilianWritersCombiner;
 import reducers.TopTenBrazilianWritersReducer;
+import reducers.UserJoinReducer;
 
 public class TopTenBrazilianWriters {
     
@@ -41,7 +41,7 @@ public class TopTenBrazilianWriters {
         job.setJarByClass(TopTenBrazilianWriters.class);
         MultipleInputs.addInputPath(job, datasetUserPath, TextInputFormat.class, UserMapper.class);
         MultipleInputs.addInputPath(job, datasetPostPath, TextInputFormat.class, PostMapper.class);
-
+        job.setReducerClass(UserJoinReducer.class);    
         job.setOutputKeyClass(Text.class);
         job.setOutputValueClass(Text.class);
 
