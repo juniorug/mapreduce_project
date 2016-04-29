@@ -1,5 +1,7 @@
+hadoop fs -mkdir /datasets
+hadoop fs -put *-reduced /datasets/
 ./executeHadoop.sh BrazilianUsersFilter /datasets/Users-reduced 
-./executeHadoop.sh TopTenBrazilianWriters /datasets/Users-reduced /datasets/Posts-reduced-joined
+./executeHadoop.sh TopTenBrazilianWriters /datasets/Users-reduced /datasets/Posts-reduced
 
 
 brasilianusers-0.0.1-SNAPSHOT.jar
@@ -7,7 +9,9 @@ brasilianusers-0.0.1-SNAPSHOT.jar
 hadoop jar brasilianusers-0.0.1-SNAPSHOT.jar br.edu.ifba.Job1 /datasets/Users-reduced user/output/countBrasil
 
 hadoop fs -rm -r -f /user/output
-
+hadoop fs -rm -r -f /user/
+hadoop fs -rm -r -f /data
+hadoop fs -rm -r -f /output
 
 public void map(Object key, Text value, Context context) throws IOException, InterruptedException {
         

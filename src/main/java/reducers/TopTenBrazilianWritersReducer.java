@@ -17,7 +17,7 @@ public class TopTenBrazilianWritersReducer extends Reducer<NullWritable, Text, T
     protected void reduce(NullWritable key, Iterable<Text> values, Context context) throws IOException, InterruptedException {
         for (Text text : values) {
             String[] dataSplit = text.toString().split("\t");
-            String[] userdata =  dataSplit[0].split("|");
+            String[] userdata =  dataSplit[0].split("\\|");
             String name = userdata[0];
             Integer id = Integer.parseInt(userdata[1]);
             value.set(name);
