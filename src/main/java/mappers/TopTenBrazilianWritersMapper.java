@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package mappers;
 
 import java.io.IOException;
@@ -10,10 +13,18 @@ import org.apache.hadoop.mapreduce.Mapper;
 
 import util.MRDPUtils;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class TopTenBrazilianWritersMapper.
+ */
 public class TopTenBrazilianWritersMapper extends Mapper<Object, Text, NullWritable, Text> {
 
+	/** The Constant ONE. */
 	private final static IntWritable ONE = new IntWritable(1);
 
+	/* (non-Javadoc)
+	 * @see org.apache.hadoop.mapreduce.Mapper#map(KEYIN, VALUEIN, org.apache.hadoop.mapreduce.Mapper.Context)
+	 */
 	@Override
 	protected void map(Object key, Text value, Context context) throws IOException, InterruptedException {
 

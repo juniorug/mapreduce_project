@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package reducers;
 
 import java.io.IOException;
@@ -10,10 +13,21 @@ import org.apache.hadoop.mapreduce.Reducer;
 import util.StringUtils;
 import util.UserComparator;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class TopTenBrazilianWritersReducer.
+ */
 public class TopTenBrazilianWritersReducer extends Reducer<NullWritable, Text, Text, Text> {
+    
+    /** The map. */
     private TreeMap<UserComparator, Text> map = new TreeMap<UserComparator, Text>(new UserComparator(null, null, null));
+    
+    /** The value. */
     private Text value = new Text();
 
+    /* (non-Javadoc)
+     * @see org.apache.hadoop.mapreduce.Reducer#reduce(KEYIN, java.lang.Iterable, org.apache.hadoop.mapreduce.Reducer.Context)
+     */
     @Override
     protected void reduce(NullWritable key, Iterable<Text> values, Context context) throws IOException, InterruptedException {
         for (Text text : values) {
@@ -33,6 +47,9 @@ public class TopTenBrazilianWritersReducer extends Reducer<NullWritable, Text, T
 
     }
     
+    /* (non-Javadoc)
+     * @see org.apache.hadoop.mapreduce.Reducer#cleanup(org.apache.hadoop.mapreduce.Reducer.Context)
+     */
     @Override
     protected void cleanup(Context context) throws IOException, InterruptedException {
     	context.write(new Text(StringUtils.getLine()), new Text());

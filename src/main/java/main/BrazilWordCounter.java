@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package main;
 
 import org.apache.hadoop.conf.Configuration;
@@ -14,8 +17,18 @@ import reducers.IntSumReducer;
 
 
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class BrazilWordCounter.
+ */
 public class BrazilWordCounter {
 
+	/**
+	 * The main method.
+	 *
+	 * @param args the arguments
+	 * @throws Exception the exception
+	 */
 	public static void main(String[] args) throws Exception {
 		Configuration conf = new Configuration();
 		String[] otherArgs = new GenericOptionsParser(conf, args).getRemainingArgs();

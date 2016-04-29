@@ -1,9 +1,22 @@
+/*
+ * 
+ */
 package util;
 
 import org.apache.hadoop.io.Text;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class StringUtils.
+ */
 public class StringUtils {
 
+	/**
+	 * Formatter.
+	 *
+	 * @param text the text
+	 * @return the string
+	 */
 	public static String formatter(Text text) {
     	String pipe = "|";
     	String name = "Name: ";
@@ -23,6 +36,13 @@ public class StringUtils {
     	return sb.toString();
     }
     
+    /**
+     * Pad.
+     *
+     * @param value the value
+     * @param length the length
+     * @return the string
+     */
     private static String pad(String value, int length) {
         String with = " ";
         StringBuilder result = new StringBuilder(length);
@@ -34,6 +54,11 @@ public class StringUtils {
         return result.toString();
     }
     
+    /**
+     * Gets the line.
+     *
+     * @return the line
+     */
     public static String getLine() {
     	int length = 103;
     	String with = "-";

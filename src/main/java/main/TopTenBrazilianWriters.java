@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package main;
 
 import java.io.IOException;
@@ -21,8 +24,20 @@ import reducers.TopTenBrazilianWritersCombiner;
 import reducers.TopTenBrazilianWritersReducer;
 import reducers.UserJoinReducer;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class TopTenBrazilianWriters.
+ */
 public class TopTenBrazilianWriters {
     
+    /**
+     * The main method.
+     *
+     * @param args the arguments
+     * @throws IOException Signals that an I/O exception has occurred.
+     * @throws ClassNotFoundException the class not found exception
+     * @throws InterruptedException the interrupted exception
+     */
     public static void main(String args[]) throws IOException, ClassNotFoundException, InterruptedException {
         Configuration conf = new Configuration();
         String[] otherArgs = new GenericOptionsParser(conf, args).getRemainingArgs();

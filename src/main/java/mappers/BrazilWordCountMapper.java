@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package mappers;
 
 import java.io.IOException;
@@ -11,11 +14,21 @@ import org.apache.hadoop.mapreduce.Mapper;
 
 import util.MRDPUtils;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class BrazilWordCountMapper.
+ */
 public class BrazilWordCountMapper extends Mapper<Object, Text, Text, IntWritable> {
 
+	/** The Constant one. */
 	private final static IntWritable one = new IntWritable(1);
+	
+	/** The word. */
 	private Text word = new Text();
 
+	/* (non-Javadoc)
+	 * @see org.apache.hadoop.mapreduce.Mapper#map(KEYIN, VALUEIN, org.apache.hadoop.mapreduce.Mapper.Context)
+	 */
 	public void map(Object key, Text value, Context context) throws IOException, InterruptedException {
 
 		// Parse the input string into a nice map
