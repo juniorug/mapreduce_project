@@ -1,4 +1,5 @@
 ./executeHadoop.sh BrazilianUsersFilter /datasets/Users-reduced 
+./executeHadoop.sh TopTenBrazilianWriters /datasets/Users-reduced /datasets/Posts-reduced-joined
 
 
 brasilianusers-0.0.1-SNAPSHOT.jar
