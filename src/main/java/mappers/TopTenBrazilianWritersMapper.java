@@ -22,7 +22,6 @@ public class TopTenBrazilianWritersMapper extends Mapper<Object, Text, NullWrita
 		if ((map.get("Id") != null) && (map.get("DisplayName") != null) && (map.get("Reputation") != null)) {
 			Text texto = new Text(map.get("DisplayName") + "|" + map.get("Id") + "|" + map.get("Reputation") + "|"
 					+ map.get("Location") + "\t" + ONE);
-			System.out.println(texto.toString());
 			context.write(NullWritable.get(), texto);
 		}
 	}

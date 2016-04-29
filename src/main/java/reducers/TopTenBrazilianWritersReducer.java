@@ -22,8 +22,7 @@ public class TopTenBrazilianWritersReducer extends Reducer<NullWritable, Text, T
             String name = userdata[0];
             Integer id = Integer.parseInt(userdata[1]);
             Integer reputation = Integer.parseInt(userdata[2]); 
-            //value.set(name);
-            //value.set("Name: " + name + " \t| Reputation: "  + reputation);
+
             value.set(StringUtils.formatter(text));
             map.put(new UserComparator(name, reputation, Integer.parseInt(dataSplit[1])), new Text(value));
             if (map.size() > 10) {
@@ -40,7 +39,6 @@ public class TopTenBrazilianWritersReducer extends Reducer<NullWritable, Text, T
         for (UserComparator data : map.descendingKeySet()) {
             value.set(data.getCount().toString());
             Text numposts = new Text("Post counter: " + value);
-            //context.write(map.get(qtdePosts), value);
             context.write(map.get(data), numposts);
         }
         context.write(new Text(StringUtils.getLine()), new Text());
