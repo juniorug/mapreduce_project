@@ -1,8 +1,11 @@
-/*
- * 
- */
 package reducers;
-
+/*
+ * TopTenBrazilianWritersCombiner
+ * 
+ * 
+ * @author Edivaldo Mascarenhas Jr.
+ * @version 1.0
+*/
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.TreeMap;
@@ -13,17 +16,12 @@ import org.apache.hadoop.mapreduce.Reducer;
 
 import util.UserComparator;
 
-
-// TODO: Auto-generated Javadoc
 /**
  * The Class TopTenBrazilianWritersCombiner.
  */
 public class TopTenBrazilianWritersCombiner extends Reducer<NullWritable, Text, NullWritable, Text> {
     
-    /** The map. */
     private TreeMap<UserComparator, Text> map = new TreeMap<UserComparator, Text>(new UserComparator(null, null, null));
-    
-    /** The data count map. */
     private HashMap<String, Integer> dataCountMap = new HashMap<String, Integer>();
 
     /* (non-Javadoc)

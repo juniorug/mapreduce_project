@@ -1,36 +1,31 @@
-/*
- * 
- */
 package util;
-
+/*
+ * UserComparator
+ * 
+ * 
+ * @author Edivaldo Mascarenhas Jr.
+ * @version 1.0
+*/
 import java.util.Comparator;
 
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 
-
-
-// TODO: Auto-generated Javadoc
 /**
  * The Class UserComparator.
  */
 public class UserComparator implements Comparator<UserComparator> {
     
-    /** The name. */
     private String name;
-    
-    /** The reputation. */
     private Integer reputation;
-    
-    /** The count. */
     private Integer count;
 
     /**
      * Instantiates a new user comparator.
      *
-     * @param name the name
-     * @param reputation the reputation
-     * @param count the count
+     * @param name the user name
+     * @param reputation the user reputation
+     * @param count the post count
      */
     public UserComparator(String name, Integer reputation, Integer count) {
         this.name = name;

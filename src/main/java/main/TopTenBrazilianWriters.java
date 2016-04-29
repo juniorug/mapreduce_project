@@ -1,8 +1,12 @@
-/*
- * 
- */
 package main;
-
+/*
+ * TopTenBrazilianWriters: Job que recupera o top ten
+ * brasileiros com maior quantidade de posts
+ * 
+ * 
+ * @author Edivaldo Mascarenhas Jr.
+ * @version 1.0
+*/
 import java.io.IOException;
 
 import org.apache.hadoop.conf.Configuration;
@@ -24,7 +28,6 @@ import reducers.TopTenBrazilianWritersCombiner;
 import reducers.TopTenBrazilianWritersReducer;
 import reducers.UserJoinReducer;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class TopTenBrazilianWriters.
  */

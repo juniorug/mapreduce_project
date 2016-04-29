@@ -1,8 +1,11 @@
-/*
- * 
- */
 package mappers;
-
+/*
+ * UserMapper
+ * 
+ * 
+ * @author Edivaldo Mascarenhas Jr.
+ * @version 1.0
+*/
 import java.io.IOException;
 import java.util.Map;
 
@@ -11,19 +14,13 @@ import org.apache.hadoop.mapreduce.Mapper;
 
 import util.MRDPUtils;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class UserMapper.
  */
 public class UserMapper extends Mapper<Object, Text, Text, Text> {
     
-    /** The outkey. */
     private Text outkey = new Text();
-    
-    /** The outvalue. */
     private Text outvalue = new Text();
-    
-    /** The map regex. */
     private String mapRegex = null;
 
     /* (non-Javadoc)

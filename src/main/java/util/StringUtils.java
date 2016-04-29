@@ -1,11 +1,13 @@
-/*
- * 
- */
 package util;
-
+/*
+ * StringUtils
+ * 
+ * 
+ * @author Edivaldo Mascarenhas Jr.
+ * @version 1.0
+*/
 import org.apache.hadoop.io.Text;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class StringUtils.
  */
@@ -14,8 +16,8 @@ public class StringUtils {
 	/**
 	 * Formatter.
 	 *
-	 * @param text the text
-	 * @return the string
+	 * @param text the text to format
+	 * @return the formatted string
 	 */
 	public static String formatter(Text text) {
     	String pipe = "|";
@@ -39,9 +41,9 @@ public class StringUtils {
     /**
      * Pad.
      *
-     * @param value the value
-     * @param length the length
-     * @return the string
+     * @param value the original string
+     * @param length the final string length
+     * @return the string padded
      */
     private static String pad(String value, int length) {
         String with = " ";
@@ -55,7 +57,7 @@ public class StringUtils {
     }
     
     /**
-     * Gets the line.
+     * Gets a line.
      *
      * @return the line
      */

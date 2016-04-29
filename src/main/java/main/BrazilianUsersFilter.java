@@ -1,8 +1,12 @@
-/*
- * 
- */
 package main;
-
+/*
+ * BrazilianUsersFilter: Job que filtra o arquivo Users e retorna apenas
+ * os registros de usuarios brasileiros
+ * 
+ * 
+ * @author Edivaldo Mascarenhas Jr.
+ * @version 1.0
+*/
 import java.io.IOException;
 
 import org.apache.hadoop.conf.Configuration;
@@ -16,9 +20,9 @@ import org.apache.hadoop.util.GenericOptionsParser;
 
 import mappers.FilterMapper;
 
-// TODO: Auto-generated Javadoc
+
 /**
- * The Class BrazilianUsersFilter.
+ * Class BrazilianUsersFilter. 
  */
 public class BrazilianUsersFilter {
 

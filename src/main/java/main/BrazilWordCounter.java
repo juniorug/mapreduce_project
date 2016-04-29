@@ -1,8 +1,10 @@
+package main;
 /*
  * 
- */
-package main;
-
+ * 
+ * @author Edivaldo Mascarenhas Jr.
+ * @version 1.0
+*/
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.IntWritable;
@@ -17,7 +19,6 @@ import reducers.IntSumReducer;
 
 
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class BrazilWordCounter.
  */

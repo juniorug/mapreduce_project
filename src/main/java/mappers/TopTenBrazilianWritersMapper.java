@@ -1,8 +1,11 @@
-/*
- * 
- */
 package mappers;
-
+/*
+ * TopTenBrazilianWritersMapper
+ * 
+ * 
+ * @author Edivaldo Mascarenhas Jr.
+ * @version 1.0
+*/
 import java.io.IOException;
 import java.util.Map;
 
@@ -13,13 +16,11 @@ import org.apache.hadoop.mapreduce.Mapper;
 
 import util.MRDPUtils;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class TopTenBrazilianWritersMapper.
  */
 public class TopTenBrazilianWritersMapper extends Mapper<Object, Text, NullWritable, Text> {
 
-	/** The Constant ONE. */
 	private final static IntWritable ONE = new IntWritable(1);
 
 	/* (non-Javadoc)

@@ -1,8 +1,11 @@
-/*
- * 
- */
 package mappers;
-
+/*
+ * BrazilWordCountMapper
+ * 
+ * 
+ * @author Edivaldo Mascarenhas Jr.
+ * @version 1.0
+*/
 import java.io.IOException;
 import java.util.Map;
 import java.util.StringTokenizer;
@@ -14,16 +17,14 @@ import org.apache.hadoop.mapreduce.Mapper;
 
 import util.MRDPUtils;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * The Class BrazilWordCountMapper.
  */
 public class BrazilWordCountMapper extends Mapper<Object, Text, Text, IntWritable> {
 
-	/** The Constant one. */
+
 	private final static IntWritable one = new IntWritable(1);
-	
-	/** The word. */
 	private Text word = new Text();
 
 	/* (non-Javadoc)
@@ -33,13 +34,9 @@ public class BrazilWordCountMapper extends Mapper<Object, Text, Text, IntWritabl
 
 		// Parse the input string into a nice map
 		Map<String, String> parsed = MRDPUtils.transformXmlToMap(value.toString());
-
-		// Grab the "Text" field, since that is what we are counting over
 		String txt = parsed.get("Location");
 
-		// .get will return null if the key is not there
 		if (txt == null) {
-			// skip this record
 			return;
 		}
 

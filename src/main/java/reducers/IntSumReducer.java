@@ -1,21 +1,22 @@
-/*
- * 
- */
 package reducers;
-
+/*
+ * IntSumReducer
+ * 
+ * 
+ * @author Edivaldo Mascarenhas Jr.
+ * @version 1.0
+*/
 import java.io.IOException;
 
 import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Reducer;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class IntSumReducer.
  */
 public class IntSumReducer extends Reducer<Text, IntWritable, Text, IntWritable> {
-	
-	/** The result. */
+
 	private IntWritable result = new IntWritable();
 
 	/* (non-Javadoc)

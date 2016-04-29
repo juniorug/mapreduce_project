@@ -1,24 +1,23 @@
-/*
- * 
- */
 package reducers;
-
+/*
+ * UserJoinReducer
+ * 
+ * 
+ * @author Edivaldo Mascarenhas Jr.
+ * @version 1.0
+*/
 import java.io.IOException;
 import java.util.ArrayList;
 
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Reducer;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class UserJoinReducer.
  */
 public class UserJoinReducer extends Reducer<Text, Text, Text, Text> {
 
-    /** The list a. */
     private ArrayList<Text> listA = new ArrayList<Text>();
-    
-    /** The list b. */
     private ArrayList<Text> listB = new ArrayList<Text>();
         
     /* (non-Javadoc)

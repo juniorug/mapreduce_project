@@ -1,8 +1,11 @@
-/*
- * 
- */
 package mappers;
-
+/*
+ * FilterMapper 
+ * 
+ * 
+ * @author Edivaldo Mascarenhas Jr.
+ * @version 1.0
+*/
 import java.io.IOException;
 import java.util.Map;
 
@@ -12,13 +15,11 @@ import org.apache.hadoop.mapreduce.Mapper;
 
 import util.MRDPUtils;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class FilterMapper.
  */
 public class FilterMapper extends Mapper<Object, Text, NullWritable, Text> {
     
-    /** The map regex. */
     private String mapRegex = null;
     
     /* (non-Javadoc)
