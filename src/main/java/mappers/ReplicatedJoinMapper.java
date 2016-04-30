@@ -5,15 +5,14 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.net.URI;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.zip.GZIPInputStream;
 
+import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Mapper;
+import org.apache.hadoop.filecache.DistributedCache;
 
 import util.MRDPUtils;
 
@@ -24,34 +23,31 @@ public class ReplicatedJoinMapper  extends Mapper<Object, Text, Text, Text> {
     private Text outvalue = new Text();
     private String joinType = null;
 
-    private BufferedReader rdr;
-
     @Override
-    public void setup(Context context) throws IOException, InterruptedException {
+    public void setup(Context context) throws IOException,
+    InterruptedException {
         try {
-            //Path[] files = DistributedCache.getLocalCacheFiles(context.getConfiguration());
-            URI[] localPaths = context.getCacheFiles();
-            List<File> files = new ArrayList<File>();
+            Path[] files = DistributedCache.getLocalCacheFiles(context.getConfiguration());
 
-            for (URI path : localPaths) {
-                files.add(new File(path));
-            }
-  
-            
-            if (files == null || files.size() == 0) {
-                throw new RuntimeException("User information is not set in DistributedCache");
+            if (files == null || files.length == 0) {
+                throw new RuntimeException(
+                        "User information is not set in DistributedCache");
             }
 
             // Read all files in the DistributedCache
-            for (File p : files) {
-                rdr = new BufferedReader(new InputStreamReader(new GZIPInputStream(new FileInputStream( p ))));
+            for (Path p : files) {
+                BufferedReader rdr = new BufferedReader(
+                        new InputStreamReader(
+                                new GZIPInputStream(new FileInputStream(
+                                        new File(p.toString())))));
 
                 String line;
                 // For each record in the user file
                 while ((line = rdr.readLine()) != null) {
 
                     // Get the user ID for this record
-                    Map<String, String> parsed = MRDPUtils.transformXmlToMap(line);
+                    Map<String, String> parsed = MRDPUtils
+                            .transformXmlToMap(line);
                     String userId = parsed.get("Id");
 
                     if (userId != null) {

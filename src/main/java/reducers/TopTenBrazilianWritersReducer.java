@@ -33,7 +33,6 @@ public class TopTenBrazilianWritersReducer extends Reducer<NullWritable, Text, T
             String[] dataSplit = text.toString().split("\t");
             String[] userdata =  dataSplit[0].split("\\|");
             String name = userdata[0];
-            Integer id = Integer.parseInt(userdata[1]);
             Integer reputation = Integer.parseInt(userdata[2]); 
 
             value.set(StringUtils.formatter(text));

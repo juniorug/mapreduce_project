@@ -45,21 +45,23 @@ public class TopTenBrazilianWriters {
         Configuration conf = new Configuration();
         String[] otherArgs = new GenericOptionsParser(conf, args).getRemainingArgs();
 
-        if (otherArgs.length != 3) {
+        if (otherArgs.length != 4) {
             System.err.println("Usage: TopTenBrazilianWriters <input_file1> <input_file2> <output_dir>");
             System.exit(2);
         }
 
         Path datasetUserPath = new Path(otherArgs[0]);
         Path datasetPostPath = new Path(otherArgs[1]);
-        Path outputDirIntermediate = new Path(otherArgs[2] + "_int");
-        Path outputDirpPath = new Path(otherArgs[2]);
+        Path outputDirIntermediate = new Path(otherArgs[3] + "_int");
+        Path outputDirpPath = new Path(otherArgs[3]);
+        
         
         Job job = Job.getInstance(conf, "StackOverflow Top Ten Brazilian Post Writers P1");
         job.getConfiguration().set("mapRegex", "(.*)bra[sz]il(.*)");
         job.setJarByClass(TopTenBrazilianWriters.class);
         MultipleInputs.addInputPath(job, datasetUserPath, TextInputFormat.class, UserMapper.class);
         MultipleInputs.addInputPath(job, datasetPostPath, TextInputFormat.class, PostMapper.class);
+        job.getConfiguration().set("join.type", args[2]);
         job.setReducerClass(UserJoinReducer.class);    
         job.setOutputKeyClass(Text.class);
         job.setOutputValueClass(Text.class);

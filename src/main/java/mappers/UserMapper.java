@@ -36,8 +36,8 @@ public class UserMapper extends Mapper<Object, Text, Text, Text> {
     public void map(Object key, Text value, Context context) throws IOException, InterruptedException {
         Map<String, String> map = MRDPUtils.transformXmlToMap(value.toString());
         String entry = map.get("Location");
+        
         if ((entry != null) && (entry.toLowerCase().matches(mapRegex))) {
-
             String userId = map.get("Id");
             if (userId != null) {
                 outkey.set(userId);

@@ -44,8 +44,7 @@ public class TopTenBrazilianWritersCombiner extends Reducer<NullWritable, Text, 
         for (String data : dataCountMap.keySet()) {   
             int total = dataCountMap.get(data);     
             String[] userdata =  data.split("\\|");            
-            String name = userdata[0];   
-            Integer id = Integer.parseInt(userdata[1]);   
+            String name = userdata[0];    
             Integer reputation = Integer.parseInt(userdata[2]);   
             map.put(new UserComparator(name, reputation, total), new Text(data + "\t" + total));
             if (map.size() > 10) {

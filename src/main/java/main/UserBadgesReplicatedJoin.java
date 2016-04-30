@@ -23,7 +23,7 @@ import mappers.ReplicatedJoinMapper;
 /**
  * The Class UserBadgesJoin.
  */
-public class UserBadgesJoin {
+public class UserBadgesReplicatedJoin {
     
     /**
      * The main method.
@@ -37,29 +37,29 @@ public class UserBadgesJoin {
         Configuration conf = new Configuration();
         String[] otherArgs = new GenericOptionsParser(conf, args).getRemainingArgs();
 
-        if (otherArgs.length != 3) {
+        if (otherArgs.length != 4) {
             System.err.println("Usage: UserBadgesJoin <input_file1> <input_file2> <output_dir>");
             System.exit(2);
         }
         
-        Job job = Job.getInstance(conf, "StackOverflow Top Ten Brazilian Post Writers P1");
-        job.getConfiguration().set("join.type", "inner");
+        Job job = Job.getInstance(conf, "StackOverflow User Badges Replicated Join");
+        job.getConfiguration().set("join.type", args[2]);
+        //job.getConfiguration().set("join.type", "inner");
 
         job.setJarByClass(TopTenBrazilianWriters.class);
         job.setMapperClass(ReplicatedJoinMapper.class);
         job.setNumReduceTasks(0);
 
         TextInputFormat.setInputPaths(job, new Path(otherArgs[0]));  //datasetUserPath
-        TextOutputFormat.setOutputPath(job, new Path(otherArgs[2]));  //outputDirpPath
+        TextOutputFormat.setOutputPath(job, new Path(otherArgs[3]));  //outputDirpPath
 
         job.setOutputKeyClass(Text.class);
         job.setOutputValueClass(Text.class);
 
         // Configure the DistributedCache
         job.addCacheFile(new Path(otherArgs[1]).toUri());  //datasetBadgesPath
-        //DistributedCache.addCacheFile(new Path(otherArgs[0]).toUri(),job.getConfiguration());
-
-       // DistributedCache.setLocalFiles(job.getConfiguration(), otherArgs[0]);
+        //DistributedCache.addCacheFile(new Path(otherArgs[1]).toUri(),job.getConfiguration());
+        //DistributedCache.setLocalFiles(job.getConfiguration(), otherArgs[1]);
 
         
         System.exit(job.waitForCompletion(true) ? 0 : 1);
